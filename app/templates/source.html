@@ -1,22 +1,14 @@
 {% macro displayNewsSourcesList(news_source_list) %} 
-{% for source in news_source_list %}
-<div class="col-md-3">
-    <div class = "thumbnail">
-        <div class="row">
-       {% extends 'base.html' %} 
-{% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
+
+
             <h1> {{name}} </h1>
-        </div>
-    </div>
+ 
         {% for article in articles %}
-        <div class="col-md-1">
+      
             <a href={{article.url}} target="_blank">
                 <img class="img-fluid img-thumbnail" src={{article.urlToImage}} alt="pic">
             </a>
-            <div class="card">
+            
                 <h4 class="text-bold"> {{article.title}} </h4>
                 <p>by {{article.author}} </p>
                 <hr>
@@ -24,24 +16,19 @@
                     <a href={{article.url}} target="_blank">Find More</a>
                 </p>
                 <p>Published{{article.publishedAt}}</p>
-            </div>
-        </div>
+         
         {% endfor %}
-    </div>
-</div>
-{% endblock%} <div class="caption">
+
+{% endblock%} 
+
             <h3 class="panel-heading"> {{source.name}} </h3>
-        </div>
-        <div class="panel-body">
+        
             <p> 
                 {{ source.description |truncate(120)}}
                 <br>
                 <a class = "btn btn-primary" href="/articles/{{source.id}}">View {{source.name}} Articles</a>
             </p>            
-        </div>
-    </div>
-    </div>
-</div>
+  
 {% endfor %} 
 {% endmacro %}
 
