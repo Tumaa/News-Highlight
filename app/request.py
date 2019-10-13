@@ -1,5 +1,5 @@
 import urllib.request,json
-from .models import NewsArticles,NewsSource
+from .models import Articles,Sources
 
 # Getting api key
 api_key = None
@@ -45,7 +45,7 @@ def process_results(news_sources_list):
         category = source.get('category')
         country = source.get('country')
         if url:
-            news_source_object = NewsSource(id,name,description,url,category,country)
+            news_source_object = Sources(id,name,description,url,category,country)
             news_sources_results.append(news_source_object)
 
     return news_sources_results
@@ -54,13 +54,13 @@ def get_articles(id):
     '''
     Function that processes the articles and returns a list of articles objects
     '''
-    get_news_articles_url = articles_url.format(id,api_key)
-    with urllib.request.urlopen(get_news_articles_url) as url:
-        get_news_articles_response = json.loads(url.read())
+    get_articles_url = articles_url.format(id,api_key)
+    with urllib.request.urlopen(get_articles_url) as url:
+        get_articles_response = json.loads(url.read())
         news_articles_results = None
-        if get_news_articles_response['articles']:
-            news_articles_results_list = get_news_articles_response['articles']
-            news_articles_results = process_articles(news_articles_results_list)
+        if get_articles_response['articles']:
+            articles_results_list = get_articles_response['articles']
+            news_articles_results = process_articles(articles_results_list)
     return news_articles_results
 
 def process_articles(news_articles_list):
@@ -78,6 +78,6 @@ def process_articles(news_articles_list):
 		publishedAt = article_item.get('publishedAt')
 
 		if urlToImage:
-			news_articles_object = NewsArticles(id,author,title,description,url,urlToImage,publishedAt)
+			news_articles_object = Articles(id,author,title,description,url,urlToImage,publishedAt)
 			news_articles_results.append(news_articles_object)
 	return news_articles_results
