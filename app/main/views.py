@@ -13,10 +13,10 @@ def index():
     entertainment_news = get_news_sources('entertainment')
     sports_news = get_news_sources('sports')
     technology_news = get_news_sources('technology')
-   
 
-    title = 'Homepage'
-    
+
+    title = 'NEWS-CENTER'
+
     return render_template('index.html',title=title, general=general_news, business=business_news, entertainment=entertainment_news, sports=sports_news, technology=technology_news)
 
 @main.route('/articles/<id>')
