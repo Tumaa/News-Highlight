@@ -1,6 +1,6 @@
 from flask import render_template,redirect,url_for,request
 from . import main
-from ..models import Articles,Sources
+from ..models import Sources
 from ..request import get_news_sources, get_articles
 
 @main.route('/')
@@ -13,10 +13,10 @@ def index():
     entertainment_news = get_news_sources('entertainment')
     sports_news = get_news_sources('sports')
     technology_news = get_news_sources('technology')
+   
 
-
-    title = 'NEWS-CENTER'
-
+    title = 'Homepage'
+    
     return render_template('index.html',title=title, general=general_news, business=business_news, entertainment=entertainment_news, sports=sports_news, technology=technology_news)
 
 @main.route('/articles/<id>')

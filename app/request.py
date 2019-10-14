@@ -1,14 +1,19 @@
 import urllib.request,json
-from .models import Articles,Sources
-
+from .models import Sources,Articles
 # Getting api key
+api_key = None
+# Getting the news sources url
+base_url = None
+#Getting the news articles url
+articles_url = None
+
 def configure_request(app):
     global api_key,base_url,articles_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
     articles_url = app.config['NEWS_ARTICLES_URL']
 def get_news_sources(category):
-
+    
     '''
     Function that gets the json response to our url request
     '''
@@ -41,20 +46,20 @@ def process_results(news_sources_list):
         if url:
             news_source_object = Sources(id,name,description,url,category,country)
             news_sources_results.append(news_source_object)
-
+    
     return news_sources_results
 
 def get_articles(id):
     '''
     Function that processes the articles and returns a list of articles objects
     '''
-    get_articles_url = articles_url.format(id,api_key)
-    with urllib.request.urlopen(get_articles_url) as url:
-        get_articles_response = json.loads(url.read())
+    get_news_articles_url = articles_url.format(id,api_key)
+    with urllib.request.urlopen(get_news_articles_url) as url:
+        get_news_articles_response = json.loads(url.read())
         news_articles_results = None
-        if get_articles_response['articles']:
-            articles_results_list = get_articles_response['articles']
-            news_articles_results = process_articles(articles_results_list)
+        if get_news_articles_response['articles']:
+            news_articles_results_list = get_news_articles_response['articles']
+            news_articles_results = process_articles(news_articles_results_list)
     return news_articles_results
 
 def process_articles(news_articles_list):
@@ -70,8 +75,8 @@ def process_articles(news_articles_list):
 		url = article_item.get('url')
 		urlToImage = article_item.get('urlToImage')
 		publishedAt = article_item.get('publishedAt')
-
+		
 		if urlToImage:
 			news_articles_object = Articles(id,author,title,description,url,urlToImage,publishedAt)
-			news_articles_results.append(news_articles_object)
-	return news_articles_results
+			news_articles_results.append(news_articles_object)	
+	return news_articles_results    
