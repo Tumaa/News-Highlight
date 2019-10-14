@@ -1,5 +1,5 @@
 import unittest
-from models import Articles,Sources
+from app.model import Sources,Articles
 
 
 class TestArticles(unittest.TestCase):
@@ -45,6 +45,7 @@ class SourceTest(unittest.TestCase):
        self.assertEquals(self.new_source.url,'https://newscenteer.com')
        self.assertEquals(self.new_source.category,'Sports')
        self.assertEquals(self.new_source.country,'Isiolo')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,7 +1,7 @@
 from flask import render_template,redirect,url_for,request
 from . import main
-from ..models import Sources
-from ..request import get_news_sources, get_articles
+from ..model import Sources
+from ..request import get_articles,get_news_sources
 
 @main.route('/')
 def index():
