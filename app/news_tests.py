@@ -22,5 +22,29 @@ class TestArticles(unittest.TestCase):
         self.assertEquals(self.new_article.url,'https://techtoday.com')
         self.assertEquals(self.new_article.urlToImage,'https://marathons.com/images')
         self.assertEquals(self.new_article.publishedAt,'2019-010-21T14:50:05Z')
+
+
+class SourceTest(unittest.TestCase):
+   '''
+   Test case to test the behavior of the NewsSource class
+   '''
+   def setUp(self):
+       '''
+       Setup function that will run before every test
+       '''
+       self.new_source = Sources('KNYS','BBC','Latest news today','https://newscenteer.com','Sports','Isiolo')
+   def test_instance(self):
+       self.assertTrue(isinstance(self.new_source,Sources))
+   def test_to_check_instance_variables(self):
+       '''
+       Test function to check instance variables
+       '''
+       self.assertEquals(self.new_source.id,'KNYS')
+       self.assertEquals(self.new_source.name,'BBC')
+       self.assertEquals(self.new_source.description,'Latest news today')
+       self.assertEquals(self.new_source.url,'https://newscenteer.com')
+       self.assertEquals(self.new_source.category,'Sports')
+       self.assertEquals(self.new_source.country,'Isiolo')
+
 if __name__ == '__main__':
     unittest.main()
