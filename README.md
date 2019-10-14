@@ -1,4 +1,4 @@
-# News-Highlight flask application
+# News-Highlight
 
 ## By fatuma ali
 
@@ -39,7 +39,8 @@ This is a flask application that will help users list and preview news articles 
 ## Technologies Used
 * Python3.6
 * Flask framework
-
+## live site
+* https://news-home.herokuapp.com/
 ## Support and contact details
 
 If you run into any issues or have questions, ideas or concerns contact ramanfatuu@gmail.com
